@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Union, Optional
+from typing import Union, Optional, List
 import pandas as pd
 import networkx as nx
 from matplotlib import pyplot as plt
@@ -55,12 +55,19 @@ class GraphsTestCasesIterator:
             raise ParseError(str(e))
 
 
-def are_results_correct(g, m, result):
+def are_results_correct(g: nx.Graph, m: List[int], result: Dict[int, int]):
+    """
+    Verifies that graph colouring results are correct
+    :param g: graph
+    :param m: colouring thresholds
+    :param result: algorithm results
+    :return: True if results are correct; False otherwise
+    """
     # TODO
     return True
 
 
-def run_tests(test_cases_path, verbose, seed):
+def run_tests(test_cases_path: Union[str, Path], verbose: bool, seed: Optional[int] = None):
 
     results = {
         'algorithm': [],
