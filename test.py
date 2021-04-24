@@ -63,7 +63,25 @@ def are_results_correct(g: nx.Graph, m: List[int], result: Dict[int, int]):
     :param result: algorithm results
     :return: True if results are correct; False otherwise
     """
-    # TODO
+    # check that the colouring is correct
+    for n in g.nodes:
+        neighbours = g.neighbors(n)
+        for neighbour in neighbours:
+            if result[n] == result[neighbour]:
+                return False
+
+    # check that less than len(m) colours were used
+    possible_colours = len([i for i in m if i > 0])
+    used_colours = num_used_colours(result)
+    if used_colours > possible_colours:
+        return False
+
+    # check that m thresholds are satisfied
+    for colour, threshold in enumerate(m):
+        used_c = len([i for i in result.values() if i == colour])
+        if used_c > threshold:
+            return False
+
     return True
 
 
@@ -87,11 +105,12 @@ def run_tests(test_cases_path: Union[str, Path], verbose: bool, seed: Optional[i
                 results['algorithm'].append(f.__name__)
                 result, time = f(g, m)
 
-                if not are_results_correct(g, m, result):
-                    raise RuntimeError(f"Implementation of {f.__name__} failed on a graph {g} and mapping {m}")
-
                 if verbose:
                     draw_graph(g, result)
+
+                if not are_results_correct(g, m, result):
+                    raise RuntimeError(f"Implementation of {f.__name__} failed on a graph {g_name} and mapping {m}")
+
                 n_colours = num_used_colours(result)
                 results['time'].append(time)
                 results['completed'].append(True)
