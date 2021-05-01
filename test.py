@@ -109,7 +109,7 @@ def run_tests(test_cases_path: Union[str, Path], verbose: bool, seed: Optional[i
                     draw_graph(g, result)
 
                 if not are_results_correct(g, m, result):
-                    raise RuntimeError(f"Implementation of {f.__name__} failed on a graph {g_name} and mapping {m}")
+                    raise RuntimeError(f'Implementation of {f.__name__} failed on a graph {g_name} and mapping {m}')
 
                 n_colours = num_used_colours(result)
                 results['time'].append(time)
