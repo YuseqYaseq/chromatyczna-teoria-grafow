@@ -99,7 +99,7 @@ def run_tests(test_cases_path: Union[str, Path], verbose: bool, seed: Optional[i
         gen = tqdm(gen)
 
     for g_name, g, m in gen:
-        for f in [smallest_last]: #[dsatur, largest_first, smallest_last]:
+        for f in [dsatur, largest_first, smallest_last]:
             try:
                 results['graph'].append(g_name)
                 results['algorithm'].append(f.__name__)
