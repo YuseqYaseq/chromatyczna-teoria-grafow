@@ -2,6 +2,7 @@
 Chromatic graph theory - graph colouring algorithms.
 
 ## Usage
+Application was tested on Python 3.7.
 usage:
 ```
 > python main.py [-h] [--seed SEED] [--verbose] [--path PATH]
