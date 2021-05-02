@@ -10,7 +10,7 @@ Graph colouring algorithms. Returns table with time spent in calculations,
 selected algorithm, number of used colours, information about completion and
 graph type.
 
-optional arguments:
+optional arguments: \
  -h, --help            show this help message and exit \
  --seed SEED, -s SEED  seed for the random number generator (default: new
                         seed at every run) \
