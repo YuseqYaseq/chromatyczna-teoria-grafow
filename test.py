@@ -124,7 +124,10 @@ def run_tests(test_cases_path: Union[str, Path], verbose: bool, seed: Optional[i
 
 def draw_graph(g: nx.Graph, colouring: Dict[int, int]):
     colouring = dict(sorted(colouring.items()))
+    sorted_g = nx.Graph()
+    sorted_g.add_nodes_from(sorted(g.nodes(data=True)))
+    sorted_g.add_edges_from(g.edges)
     colour_map = {i: c for i, c in enumerate(['blue', 'green', 'orange', 'red', 'purple', 'yellow'])}
     colouring = [colour_map[c] for i, c in colouring.items()]
-    nx.draw_networkx(g, node_color=colouring)
+    nx.draw_networkx(sorted_g, node_color=colouring)
     plt.show()
