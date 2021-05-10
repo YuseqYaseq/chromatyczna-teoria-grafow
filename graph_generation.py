@@ -65,4 +65,4 @@ def get_random_n_graph(n: int, m_low: float, m_high: float, seed: Optional[int] 
     """
     np.random.seed(seed)
     edges = np.random.randint(0, n, size=(np.random.randint(m_low * n, m_high * n), 2))
-    return nx.Graph(edges.tolist())
+    return nx.Graph([(v1, v2) for v1, v2 in edges.tolist() if v1 != v2])
