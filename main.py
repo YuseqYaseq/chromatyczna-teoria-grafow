@@ -26,3 +26,4 @@ if __name__ == '__main__':
     path, verbose, seed = parse_args()
     results = run_tests(path, verbose=verbose, seed=seed)
     print(results)
+    results.to_csv(f'results/{path}.csv', index=False)
